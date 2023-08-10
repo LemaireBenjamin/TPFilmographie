@@ -1,16 +1,15 @@
 package fr.eni.film.tpfilmographie.bo;
 
-import java.util.ArrayList;
+
 
 public class Type {
     private int id;
     private String label;
-    private ArrayList<Movie> movies;
 
-    public Type(int id, String label, ArrayList<Movie> movies) {
+
+    public Type(int id, String label) {
         this.id = id;
         this.label = label;
-        this.movies = movies;
     }
 
     public Type() {
@@ -32,11 +31,4 @@ public class Type {
         this.label = label;
     }
 
-    public ArrayList<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
-    }
 }

@@ -13,11 +13,10 @@ public class Participant {
     public Participant() {
     }
 
-    public Participant(int id, String firstName, String lastName, ArrayList<Movie> movies, boolean director, boolean actor) {
+    public Participant(int id, String firstName, String lastName, boolean director, boolean actor) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.movies = movies;
         this.director = director;
         this.actor = actor;
     }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Filmothèque</title>
+</head>
+<body>
+<div th:replace="parts/header :: header"></div>
+<main>
+        <div class="movie-detail">
+            <table class="movie-table" th:object="movie">
+                <tr>
+                    <td th:text="${title}"></td>
+                    <td th:text="${releaseDate}"></td>
+                    <td th:text="${duration}"></td>
+                    <td th:text="${synopsis}"></td>
+                    <td th:text="${type.label}"></td>
+                    <td th:text="${director.firstName}"></td>
+                </tr>
+            </table>
+            <table class="actors-table">
+                <tr th:each="actor: ${movie.actors}">
+                    <td th:text="${actor.firstName}"></td>
+                    <td th:text="${actor.lastName}"></td>
+                </tr>
+            </table>
+<!--    MISSING NULL SAFE CONTROL ON OPINIONS        -->
+            <div class="opinion" th:each="opinion: ${movie.opinions}">
+                <p th:text="${opinion.opinion}"></p>
+            </div>
+        </div>
+</main>
+<div th:replace="parts/footer :: footer"></div>
+</body>
+</html>
