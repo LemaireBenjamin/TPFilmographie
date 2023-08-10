@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class TypeController {
-    @GetMapping
+    @GetMapping("/type")
     public String typeListPage(Model model){
         return "typelistpage";
     }

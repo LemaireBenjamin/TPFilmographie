@@ -28,7 +28,7 @@
                         </td>
 
                         <td th:text="${movie.type.label}"></td>
-
+                        <td><a class="btn btn-lg btn-success" th:href="'/movies/detail/'+${movie.id}">Détail</a></td>
                     </tr>
                 </tbody>
             </table>

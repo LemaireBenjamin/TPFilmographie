@@ -16,7 +16,7 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-    @ModelAttribute("movies")
+
 
     @GetMapping({"/",""})
     public String homePage(Model model){

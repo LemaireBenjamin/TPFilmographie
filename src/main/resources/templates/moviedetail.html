@@ -8,14 +8,14 @@
 <div th:replace="parts/header :: header"></div>
 <main>
         <div class="movie-detail">
-            <table class="movie-table" th:object="movie">
+            <table class="movie-table">
                 <tr>
-                    <td th:text="${title}"></td>
-                    <td th:text="${releaseDate}"></td>
-                    <td th:text="${duration}"></td>
-                    <td th:text="${synopsis}"></td>
-                    <td th:text="${type.label}"></td>
-                    <td th:text="${director.firstName}"></td>
+                    <td th:text="${movie.title}"></td>
+                    <td th:text="${movie.releaseDate}"></td>
+                    <td th:text="${movie.duration}"></td>
+                    <td th:text="${movie.synopsis}"></td>
+                    <td th:text="${movie.type.label}"></td>
+                    <td th:text="${movie.director.firstName}"></td>
                 </tr>
             </table>
             <table class="actors-table">
@@ -27,6 +27,7 @@
 <!--    MISSING NULL SAFE CONTROL ON OPINIONS        -->
             <div class="opinion" th:each="opinion: ${movie.opinions}">
                 <p th:text="${opinion.opinion}"></p>
+                <p th:text="${opinion.rating}"></p>
             </div>
         </div>
 </main>

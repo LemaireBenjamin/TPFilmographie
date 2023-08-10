@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class ParticipantController {
-    @GetMapping
+    @GetMapping("/participant")
     public String ParticipantListPage(Model model){
         return "participantlistpage";
     }
