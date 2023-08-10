@@ -9,8 +9,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 public class OpinionController {
 
     @GetMapping("/opinion/{id}")
-    public String typeDetailPage(@PathVariable(value = "id",required = true)int id, Model model){
+    public String opinionDetailPage(@PathVariable(value = "id",required = true)int id, Model model){
 
-        return "typedetailpage";
+        return "opiniondetailpage";
     }
 }
