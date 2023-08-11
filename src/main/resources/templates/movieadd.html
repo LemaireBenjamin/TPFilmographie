@@ -13,30 +13,38 @@
 
 
   <div>
-    <form action="/movies/add" method="post">
+    <form action="/movies/add" th:object="${movie}" method="post">
       <div class="form-group row">
 
         <label for="title" class="form-label mt-4">Titre</label>
-        <input type="text" class="form-control" id="title"  placeholder="Le titre du film">
+        <input type="text" class="form-control" id="title" th:field="*{title}" placeholder="Le titre du film">
 
         <label for="releaseDate" class="form-label mt-4">Année de sortie</label>
-        <input type="number" class="form-control" id="releaseDate"  placeholder="L'année de sortie">
+        <input type="number" class="form-control" id="releaseDate" th:field="*{releaseDate}" placeholder="L'année de sortie">
 
-        <label for="directorLastName" class="form-label mt-4">Nom du réalisateur</label>
-        <input type="text" class="form-control" id="directorLastName" placeholder="Le nom du réalisateur">
+<!--        <label for="directorLastName" class="form-label mt-4">Nom du réalisateur</label>-->
+<!--        <input type="text" class="form-control" id="directorLastName" th:field  placeholder="Le nom du réalisateur">-->
 
-        <label for="directorFirstName" class="form-label mt-4">Prénom du réalisateur</label>
-        <input type="text" class="form-control" id="directorFirstName" placeholder="Le prénom du réalisateur">
+<!--        <label for="directorFirstName" class="form-label mt-4">Prénom du réalisateur</label>-->
+<!--        <input type="text" class="form-control" id="directorFirstName" placeholder="Le prénom du réalisateur">-->
+        <label for="director" class="form-label mt-4">Le réalisateur</label>
+        <select class="col-3" id="director" th:field="*{director}" required>
+          <option th:each="director: ${@participantsService.findParticipants()}"
+                  th:value="${director.id}" th:text="${director.firstName + ' ' + director.lastName}"></option>
+        </select>
 
         <label for="duration" class="form-label mt-4">Durée du film</label>
-        <input type="number" class="form-control" id="duration"  placeholder="La durée du film">
+        <input type="number" class="form-control" id="duration" th:field="*{duration}" placeholder="La durée du film">
 
         <label for="synopsis" class="form-label mt-4">Le synopsis</label>
-        <input type="text" class="form-control" id="synopsis"  placeholder="Le synopsis du film">
+        <input type="text" class="form-control" id="synopsis" th:field="*{synopsis}" placeholder="Le synopsis du film">
 
 
         <label for="type" class="form-label mt-4">Le genre du film</label>
-        <input type="text" class="form-control" id="type" placeholder="Le genre du film">
+        <select class="col-3" id="type" th:field="*{type}" required>
+          <option th:each="type: ${@types}"
+                  th:value="${type.id}" th:text="${type.label}"></option>
+        </select>
 
         <div class="m-4">
           <button class="btn btn-primary" type="submit">Ajouter</button>

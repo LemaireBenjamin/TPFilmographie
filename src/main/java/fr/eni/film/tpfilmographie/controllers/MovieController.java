@@ -1,6 +1,7 @@
 package fr.eni.film.tpfilmographie.controllers;
 
 import fr.eni.film.tpfilmographie.bo.Movie;
+import fr.eni.film.tpfilmographie.bo.Participant;
 import fr.eni.film.tpfilmographie.bo.Type;
 import fr.eni.film.tpfilmographie.services.MovieService;
 import fr.eni.film.tpfilmographie.services.ParticipantService;
@@ -54,18 +55,16 @@ public class MovieController {
 
     @GetMapping({"/movies/add"})
     public String movieAdd(Model model){
-        model.addAttribute("types", getTypes());
+        model.addAttribute("movie", new Movie());
+//        model.addAttribute("director", new Participant());
         return "movieadd";
     }
 
     @PostMapping({"/movies/add"})
     public String movieAddProcess(
-            String title,
-            int releaseDate,
+
             String directorLastName,
-            String directorFirstName,
-            int duration,
-            String synopsis
+            String directorFirstName
     ){
         return "home";
     }

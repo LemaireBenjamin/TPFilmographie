@@ -3,9 +3,11 @@ package fr.eni.film.tpfilmographie.bll;
 import fr.eni.film.tpfilmographie.bo.Movie;
 import fr.eni.film.tpfilmographie.bo.Participant;
 import fr.eni.film.tpfilmographie.services.ParticipantService;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 
+@Service("participantsService")
 public class ParticipantServiceImpl implements ParticipantService {
     private ArrayList<Participant> participants;
 
