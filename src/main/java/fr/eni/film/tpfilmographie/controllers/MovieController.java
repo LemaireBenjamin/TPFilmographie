@@ -1,20 +1,24 @@
 package fr.eni.film.tpfilmographie.controllers;
 
 import fr.eni.film.tpfilmographie.services.MovieService;
+import fr.eni.film.tpfilmographie.services.ParticipantService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MovieController {
 
-    private MovieService movieService;
 
-    public MovieController(MovieService movieService) {
+    private MovieService movieService;
+    private ParticipantService participantService;
+
+
+    public MovieController(
+            MovieService movieService,
+            ParticipantService participantService) {
         this.movieService = movieService;
+        this.participantService = participantService;
     }
 
 
@@ -31,8 +35,21 @@ public class MovieController {
         return "moviedetail";
     }
 
-    @GetMapping({"movies/add/"})
-    public String movieAdd(){
-        return null;
+    @GetMapping({"/movies/add"})
+    public String movieAdd(Model model){
+//        model.addAttribute("type", );
+        return "movieadd";
+    }
+
+    @PostMapping({"/movies/add"})
+    public String movieAddProcess(
+            String title,
+            int releaseDate,
+            String directorLastName,
+            String directorFirstName,
+            int duration,
+            String synopsis
+    ){
+        return "home";
     }
 }

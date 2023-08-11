@@ -1,16 +1,28 @@
 package fr.eni.film.tpfilmographie.bo;
 
+import jakarta.validation.constraints.*;
+
 import java.util.ArrayList;
 
 public class Movie {
     private int id;
+
+    @NotNull
+    @NotBlank(message = "Le titre ne doit pas être nul")
     private String title;
+
+    @NotNull
+    @Digits(integer = 4, fraction = 0)
     private int releaseDate;
+    @Min(0)
     private int duration; // minute
+
+    @Size(min = 20,max=250,message = "Le nombre de caractère doit être entre 20 et 250")
     private String synopsis;
     private Type type;
     private ArrayList<Opinion> opinions;
     private ArrayList<Participant> actors;
+
     private Participant director;
 
     public Movie() {
