@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-lg bg-primary" data-bs-theme="dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Filmothèque</a>
+      <a class="navbar-brand" th:href="@{/}">Filmothèque</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -9,10 +9,10 @@
         <ul class="navbar-nav me-auto">
 
           <li class="nav-item">
-            <a class="nav-link" href="#">Liste des films</a>
+            <a class="nav-link" th:href="@{/}">Liste des films</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Ajouter un film</a>
+            <a class="nav-link" th:href="@{/movies/add}">Ajouter un film</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">A propos</a>

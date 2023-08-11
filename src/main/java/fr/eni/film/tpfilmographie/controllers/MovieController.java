@@ -1,27 +1,49 @@
 package fr.eni.film.tpfilmographie.controllers;
 
+import fr.eni.film.tpfilmographie.bo.Movie;
+import fr.eni.film.tpfilmographie.bo.Participant;
+import fr.eni.film.tpfilmographie.bo.Type;
 import fr.eni.film.tpfilmographie.services.MovieService;
+import fr.eni.film.tpfilmographie.services.ParticipantService;
+import fr.eni.film.tpfilmographie.services.TypeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class MovieController {
 
-    private MovieService movieService;
 
-    public MovieController(MovieService movieService) {
+    private MovieService movieService;
+    private ParticipantService participantService;
+    private TypeService typeService;
+
+
+    public MovieController(
+            MovieService movieService,
+            ParticipantService participantService,
+            TypeService typeService
+    ) {
         this.movieService = movieService;
+        this.participantService = participantService;
+        this.typeService = typeService;
     }
 
+    @ModelAttribute("movies")
+    public List<Movie> getMovies(){
+        return movieService.findMovies();
+    }
 
+    @ModelAttribute("types")
+    public List<Type> getTypes(){
+        return typeService.findTypes();
+    }
 
     @GetMapping({"/",""})
     public String homePage(Model model){
-        model.addAttribute("movies",movieService.findMovies());
+//        model.addAttribute("movies",movieService.findMovies());
         return "home";
     }
 
@@ -31,8 +53,19 @@ public class MovieController {
         return "moviedetail";
     }
 
-    @GetMapping({"movies/add/"})
-    public String movieAdd(){
-        return null;
+    @GetMapping({"/movies/add"})
+    public String movieAdd(Model model){
+        model.addAttribute("movie", new Movie());
+//        model.addAttribute("director", new Participant());
+        return "movieadd";
+    }
+
+    @PostMapping({"/movies/add"})
+    public String movieAddProcess(
+
+            String directorLastName,
+            String directorFirstName
+    ){
+        return "home";
     }
 }
