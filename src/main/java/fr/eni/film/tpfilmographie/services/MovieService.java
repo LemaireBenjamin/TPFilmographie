@@ -7,4 +7,6 @@ import java.util.List;
 public interface MovieService {
     public List<Movie> findMovies();
     public Movie findMovieById(Integer id);
+
+    void updateMovie(Movie movie);
 }
