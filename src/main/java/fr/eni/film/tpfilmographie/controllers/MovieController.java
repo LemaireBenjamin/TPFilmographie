@@ -1,5 +1,6 @@
 package fr.eni.film.tpfilmographie.controllers;
 
+import fr.eni.film.tpfilmographie.bo.Movie;
 import fr.eni.film.tpfilmographie.services.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,6 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class MovieController {
@@ -17,11 +20,14 @@ public class MovieController {
         this.movieService = movieService;
     }
 
-
+    @ModelAttribute("movies")
+    public List<Movie> getMovies(){
+        return movieService.findMovies();
+    }
 
     @GetMapping({"/",""})
     public String homePage(Model model){
-        model.addAttribute("movies",movieService.findMovies());
+//        model.addAttribute("movies",movieService.findMovies());
         return "home";
     }
 
