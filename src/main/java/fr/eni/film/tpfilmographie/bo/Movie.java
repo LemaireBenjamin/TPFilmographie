@@ -6,7 +6,7 @@ public class Movie {
     private int id;
     private String title;
     private int releaseDate;
-    private int duration;
+    private int duration; // minute
     private String synopsis;
     private Type type;
     private ArrayList<Opinion> opinions;
