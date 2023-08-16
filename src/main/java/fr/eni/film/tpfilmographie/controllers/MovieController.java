@@ -62,9 +62,9 @@ public class MovieController {
 
     @PostMapping({"/movies/add"})
     public String movieAddProcess(
-        @RequestParam("movie") Movie movie
+       @ModelAttribute Movie movie
     ){
-
-        return "home";
+        movieService.findMovies().add(movie);
+        return "redirect:/movies/detail/"+movie.getId();
     }
 }
