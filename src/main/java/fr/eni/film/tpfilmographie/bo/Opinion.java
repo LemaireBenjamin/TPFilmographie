@@ -1,67 +1,29 @@
 package fr.eni.film.tpfilmographie.bo;
 
-public class Opinion {
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serial;
+import java.io.Serializable;
+
+@Entity
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class Opinion implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 7057753112314604136L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String opinion;
     private int rating;
-    private Movie movie;
 
+    @ManyToOne
+    private Movie movie;
+    @ManyToOne
     private Member member;
 
-    public Opinion(int id, String opinion, int rating) {
-        this.id = id;
-        this.opinion = opinion;
-        this.rating = rating;
-    }
-
-    public Opinion(int id, String opinion, int rating, Movie movie) {
-        this.id = id;
-        this.opinion = opinion;
-        this.rating = rating;
-        this.movie = movie;
-    }
-
-
-    public Opinion() {
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getOpinion() {
-        return opinion;
-    }
-
-    public void setOpinion(String opinion) {
-        this.opinion = opinion;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
-
-    public Movie getMovie() {
-        return movie;
-    }
-
-    public void setMovie(Movie movie) {
-        this.movie = movie;
-    }
-
-    public Member getMember() {
-        return member;
-    }
-
-    public void setMember(Member member) {
-        this.member = member;
-    }
 }

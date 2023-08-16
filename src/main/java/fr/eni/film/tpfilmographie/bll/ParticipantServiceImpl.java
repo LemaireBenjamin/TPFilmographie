@@ -1,6 +1,5 @@
 package fr.eni.film.tpfilmographie.bll;
 
-import fr.eni.film.tpfilmographie.bo.Movie;
 import fr.eni.film.tpfilmographie.bo.Participant;
 import fr.eni.film.tpfilmographie.services.ParticipantService;
 import org.springframework.stereotype.Service;
@@ -13,23 +12,23 @@ public class ParticipantServiceImpl implements ParticipantService {
 
     public ParticipantServiceImpl() {
         this.participants = new ArrayList<Participant>();
-        participants.add(new Participant(1, "Benjam", "Prejen", true, true));
-        participants.add(new Participant(2, "Fanch", "Triangle", false, true));
-        participants.add(new Participant(3, "Sebastien", "Gloopy", false, true));
-        participants.add(new Participant(4, "Robin", "SonCrusoe", false, true));
+//        participants.add(new Participant(1, "Benjam", "Prejen", true, true));
+//        participants.add(new Participant(2, "Fanch", "Triangle", false, true));
+//        participants.add(new Participant(3, "Sebastien", "Gloopy", false, true));
+//        participants.add(new Participant(4, "Robin", "SonCrusoe", false, true));
 
     }
 
     @Override
     public void insertParticipant(Participant participant) {
-        participants.add(new Participant(
-                getNextParticipantId(),
-                participant.getFirstName(),
-                participant.getLastName(),
-                true,
-                false
-                )
-        );
+//        participants.add(new Participant(
+//                getNextParticipantId(),
+//                participant.getFirstName(),
+//                participant.getLastName(),
+//                true,
+//                false
+//                )
+//        );
     }
 
     @Override

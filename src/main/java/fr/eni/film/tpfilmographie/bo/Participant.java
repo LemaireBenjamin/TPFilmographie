@@ -1,71 +1,35 @@
 package fr.eni.film.tpfilmographie.bo;
 
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Participant {
+@Entity @Data @AllArgsConstructor @NoArgsConstructor
+public class Participant implements Serializable {
+    @Serial
+    private static final long serialVersionUID = -362058956527358713L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @NotBlank(message="Le nom ne peut pas être vide.")
+    @Size(min = 2,max = 255,message = "Le nom doit être de minimum 2 et maximum 255 caractères.")
     private String firstName;
+    @NotBlank(message = "Le prénom ne peut pas être vide.")
+    @Size(min = 2,max = 255,message = "Le prénom doit être de minimum 2 et maximum 255 caractères.")
     private String lastName;
-    private ArrayList<Movie> movies;
-    private boolean director;
-    private boolean actor;
 
-    public Participant() {
-    }
 
-    public Participant(int id, String firstName, String lastName, boolean director, boolean actor) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.director = director;
-        this.actor = actor;
-    }
 
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
-    public String getFirstName() {
-        return firstName;
-    }
 
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public ArrayList<Movie> getMovies() {
-        return movies;
-    }
-
-    public void setMovies(ArrayList<Movie> movies) {
-        this.movies = movies;
-    }
-
-    public boolean isDirector() {
-        return director;
-    }
-
-    public void setDirector(boolean director) {
-        this.director = director;
-    }
-
-    public boolean isActor() {
-        return actor;
-    }
-
-    public void setActor(boolean actor) {
-        this.actor = actor;
-    }
 }
