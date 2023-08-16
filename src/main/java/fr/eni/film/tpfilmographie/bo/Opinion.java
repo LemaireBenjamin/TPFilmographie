@@ -6,6 +6,8 @@ public class Opinion {
     private int rating;
     private Movie movie;
 
+    private Member member;
+
     public Opinion(int id, String opinion, int rating) {
         this.id = id;
         this.opinion = opinion;
@@ -18,6 +20,7 @@ public class Opinion {
         this.rating = rating;
         this.movie = movie;
     }
+
 
     public Opinion() {
     }
@@ -52,5 +55,13 @@ public class Opinion {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public Member getMember() {
+        return member;
+    }
+
+    public void setMember(Member member) {
+        this.member = member;
     }
 }

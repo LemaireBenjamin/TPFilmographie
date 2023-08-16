@@ -62,10 +62,9 @@ public class MovieController {
 
     @PostMapping({"/movies/add"})
     public String movieAddProcess(
-
-            String directorLastName,
-            String directorFirstName
+        @RequestParam("movie") Movie movie
     ){
+
         return "home";
     }
 }

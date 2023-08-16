@@ -9,4 +9,6 @@ public interface OpinionService {
     public Opinion findOpinionById(int id);
     public void insertOpinion(Opinion opinion);
     public int getNextOpinionId();
+
+
 }

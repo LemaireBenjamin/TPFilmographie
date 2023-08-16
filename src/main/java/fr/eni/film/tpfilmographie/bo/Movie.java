@@ -7,7 +7,6 @@ import java.util.ArrayList;
 public class Movie {
     private int id;
 
-
     @NotBlank(message = "Le titre ne doit pas être nul")
     private String title;
 
