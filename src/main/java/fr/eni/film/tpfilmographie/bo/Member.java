@@ -19,23 +19,30 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Member implements Serializable {
+
     @Serial
     private static final long serialVersionUID = -600562343613848979L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     @NotBlank(message="Le prénom ne peut être vide")
     @NotNull(message = "L'email ne peut pas être nul")
     private String firstName;
+
     @NotBlank(message="Le nom ne peut être vide")
     @NotNull(message = "L'email ne peut pas être nul")
     private String lastName;
+
     @Email
     @NotNull(message = "L'email ne peut pas être nul")
     private String emailAdress;
+
     @Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{8,20}$")
     @NotNull(message = "L'email ne peut pas être nul")
     private String password;
+
     private boolean admin;
 
     @OneToMany(mappedBy = "opinions")

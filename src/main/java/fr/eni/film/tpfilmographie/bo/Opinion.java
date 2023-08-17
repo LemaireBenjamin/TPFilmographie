@@ -13,16 +13,21 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Opinion implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 7057753112314604136L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String opinion;
+
     private int rating;
 
     @ManyToOne
     private Movie movie;
+
     @ManyToOne
     private Member member;
 

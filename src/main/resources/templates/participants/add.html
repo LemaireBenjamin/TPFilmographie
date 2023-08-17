@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head th:include="parts/head"></head>
+<body>
+
+<div th:replace="~{parts/header :: header}"></div>
+
+<main class="container">
+
+  <div class="align-content-center row m-4">
+    <h1>Ajouter un participant</h1>
+  </div>
+
+  <div>
+    <form action="/movies/add" th:object="${participant}" method="post">
+      <div class="form-group row">
+
+
+        <label for="lastName" class="form-label mt-4">Nom du participant</label>
+        <input type="text" class="form-control" id="lastName" th:field  placeholder="Le nom">
+
+        <label for="firstName" class="form-label mt-4">Prénom du participant</label>
+        <input type="text" class="form-control" id="firstName" placeholder="Le prénom">
+
+
+        <div class="m-4">
+          <button class="btn btn-primary" type="submit">Ajouter</button>
+          <button class="btn btn-warning" type="reset">Annuler</button>
+        </div>
+
+      </div>
+
+    </form>
+
+  </div>
+
+</main>
+
+<div th:replace="~{parts/footer :: footer}"></div>
+
+</body>
+
+</html>

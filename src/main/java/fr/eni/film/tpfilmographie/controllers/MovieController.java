@@ -6,6 +6,8 @@ import fr.eni.film.tpfilmographie.bo.Type;
 import fr.eni.film.tpfilmographie.services.MovieService;
 import fr.eni.film.tpfilmographie.services.ParticipantService;
 import fr.eni.film.tpfilmographie.services.TypeService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,9 +17,14 @@ import java.util.List;
 @Controller
 public class MovieController {
 
-
+    @Autowired
+    @Qualifier("JPA")
     private MovieService movieService;
+
+    @Autowired
     private ParticipantService participantService;
+
+    @Autowired
     private TypeService typeService;
 
 
@@ -56,7 +63,6 @@ public class MovieController {
     @GetMapping({"/movies/add"})
     public String movieAdd(Model model){
         model.addAttribute("movie", new Movie());
-//        model.addAttribute("director", new Participant());
         return "movieadd";
     }
 

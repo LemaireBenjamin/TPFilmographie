@@ -14,8 +14,10 @@ import java.util.ArrayList;
 @Data
 @NoArgsConstructor @AllArgsConstructor
 public class Movie implements Serializable {
+
     @Serial
     private static final long serialVersionUID = 8143000843419167816L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -34,10 +36,13 @@ public class Movie implements Serializable {
 
     @ManyToOne
     private Type type;
+
     @OneToMany(mappedBy = "opinions")
     private ArrayList<Opinion> opinions;
+
     @ManyToMany
     private ArrayList<Actor> actors;
+
     @ManyToOne
     private Director director;
 

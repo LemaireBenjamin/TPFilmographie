@@ -4,6 +4,7 @@ import fr.eni.film.tpfilmographie.bo.Movie;
 import fr.eni.film.tpfilmographie.bo.Opinion;
 import fr.eni.film.tpfilmographie.services.MovieService;
 import fr.eni.film.tpfilmographie.services.OpinionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,8 +15,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class OpinionController {
 
-    MovieService movieService;
-    OpinionService opinionService;
+    @Autowired
+    private MovieService movieService;
+
+    @Autowired
+    private OpinionService opinionService;
 
     public OpinionController(MovieService movieService, OpinionService opinionService) {
         this.movieService = movieService;
