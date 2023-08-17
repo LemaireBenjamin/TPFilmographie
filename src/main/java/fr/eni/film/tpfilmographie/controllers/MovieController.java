@@ -48,7 +48,7 @@ public class MovieController {
     }
 
     @GetMapping({"/movies/detail/{id}"})
-    public String movieDetail(@PathVariable(value = "id",required = true) int id, Model model){
+    public String movieDetail(@PathVariable(value = "id",required = true) Integer id, Model model){
         model.addAttribute("movie",movieService.findMovieById(id));
         return "moviedetail";
     }
@@ -64,7 +64,7 @@ public class MovieController {
     public String movieAddProcess(
        @ModelAttribute Movie movie
     ){
-        movieService.findMovies().add(movie);
+        movieService.updateMovie(movie);
         return "redirect:/movies/detail/"+movie.getId();
     }
 }

@@ -17,13 +17,13 @@ public class Opinion implements Serializable {
     private static final long serialVersionUID = 7057753112314604136L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
-    private String opinion;
-    private int rating;
+    private Integer id;
+    private String text;
+    private Integer rating;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Movie movie;
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member member;
 
 }

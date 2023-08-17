@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -23,7 +24,7 @@ public class Member implements Serializable {
     private static final long serialVersionUID = -600562343613848979L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @NotBlank(message="Le prénom ne peut être vide")
     @NotNull(message = "L'email ne peut pas être nul")
     private String firstName;
@@ -38,6 +39,6 @@ public class Member implements Serializable {
     private String password;
     private boolean admin;
 
-    @OneToMany(mappedBy = "opinions")
-    private ArrayList<Opinion> opinions;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Opinion> opinions;
 }

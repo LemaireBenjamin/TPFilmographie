@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -19,12 +19,12 @@ public class Type implements Serializable {
     private static final long serialVersionUID = -669341106819076166L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
     @NotBlank(message = "Le label ne peut pas être vide.")
     private String label;
 
-    @OneToMany(mappedBy = "type")
-    private ArrayList<Movie> movies;
+    @OneToMany(mappedBy = "type",cascade = CascadeType.ALL)
+    private List<Movie> movies;
 
 
 

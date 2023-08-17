@@ -13,7 +13,7 @@
 
 
   <div>
-    <form action="/movies/add" th:object="${  }" method="post">
+    <form action="/movies/add" th:object="${movie}" method="post">
       <div class="form-group row">
 
         <label for="title" class="form-label mt-4">Titre</label>
@@ -29,7 +29,7 @@
 <!--        <input type="text" class="form-control" id="directorFirstName" placeholder="Le prénom du réalisateur">-->
         <label for="director" class="form-label mt-4">Le réalisateur</label>
         <select class="col-3" id="director" th:field="*{director}" required>
-          <option th:each="director: ${@participantsService.findParticipants()}"
+          <option th:each="director: ${@participantsService.findDirectors()}"
                   th:value="${director.id}" th:text="${director.firstName + ' ' + director.lastName}"></option>
         </select>
 

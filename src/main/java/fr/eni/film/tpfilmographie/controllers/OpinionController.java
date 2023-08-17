@@ -2,46 +2,46 @@ package fr.eni.film.tpfilmographie.controllers;
 
 import fr.eni.film.tpfilmographie.bo.Movie;
 import fr.eni.film.tpfilmographie.bo.Opinion;
+import fr.eni.film.tpfilmographie.services.MemberService;
 import fr.eni.film.tpfilmographie.services.MovieService;
 import fr.eni.film.tpfilmographie.services.OpinionService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @Controller
 public class OpinionController {
 
+    @Autowired
     MovieService movieService;
-    OpinionService opinionService;
+    @Autowired OpinionService opinionService;
+    @Autowired MemberService memberService;
 
-    public OpinionController(MovieService movieService, OpinionService opinionService) {
-        this.movieService = movieService;
-        this.opinionService = opinionService;
-    }
 
     @GetMapping("/opinion/{id}")
-    public String opinionDetailPage(@PathVariable(value = "id",required = true)int id, Model model){
-
+    public String opinionDetailPage(@PathVariable(value = "id",required = true)Integer id, Model model){
         return "opiniondetailpage";
     }
     @GetMapping("/movies/detail/{movieid}/newopinion")
-    public String newOpinionPage(@PathVariable(value = "movieid",required = true)int movieid,Model model){
+    public String newOpinionPage(@PathVariable(value = "movieid",required = true)Integer movieid,Model model){
+        Opinion opinion = new Opinion();
+        opinion.setMember(memberService.findMemberById(1));
+        opinion.setMovie(movieService.findMovieById(movieid));
+        model.addAttribute("opinion",opinion);
         model.addAttribute("movie",movieService.findMovieById(movieid));
         return "newopinion";
     }
     @PostMapping("/movies/detail/{movieid}/newopinion")
     public String addNewOpinion(
-            @PathVariable(value = "movieid",required = true)int movieid,
-            @RequestParam("rating") int rating,
-            @RequestParam("opinion") String opinionText
+            @ModelAttribute Opinion opinion,
+            @PathVariable(value = "movieid",required = true)Integer movieid
             ){
-        Movie movie=movieService.findMovieById(movieid);
-        Opinion newOpinion=new Opinion(opinionService.getNextOpinionId(),opinionText,rating);
-        movie.getOpinions().add(newOpinion);
-        movieService.updateMovie(movie);
-        return "redirect:/movies/detail/"+movie.getId();
+        opinion.setMovie(movieService.findMovieById(movieid));
+        opinion.setMember(memberService.findMemberById(1));
+        opinionService.insertOpinion(opinion);
+        return "redirect:/movies/detail/"+movieid;
     }
 }

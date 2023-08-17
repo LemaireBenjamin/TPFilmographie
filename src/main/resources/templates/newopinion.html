@@ -7,14 +7,14 @@
   <div class="container">
     <div class="row justify-content-md-center">
       <div>
-        <form class="form form-control" action="" method="post">
+        <form class="form form-control" action="" method="post" th:object="${opinion}">
           <fieldset>
             <legend>Legend</legend>
-          <label class="form-label" for="rating">Votre note : </label>
-          <input class="" type="number" min="0" max="5" name="rating" id="rating">
+            <label class="form-label" for="opinion">Votre avis : </label>
+            <input class="" type="text" name="opinion" id="opinion" th:field="*{text}">
             <br>
-          <label class="form-label" for="opinion">Votre avis : </label>
-          <input class="" type="text" name="opinion" id="opinion">
+            <label class="form-label" for="rating">Votre note : </label>
+            <input class="" type="number" min="0" max="5" name="rating" id="rating" th:field="*{rating}">
             <input class="btn btn-lg btn-outline-success" type="submit" value="Valider">
           </fieldset>
         </form></div>
