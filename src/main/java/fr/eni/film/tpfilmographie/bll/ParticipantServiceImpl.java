@@ -1,54 +1,56 @@
 package fr.eni.film.tpfilmographie.bll;
 
+import fr.eni.film.tpfilmographie.bo.Director;
 import fr.eni.film.tpfilmographie.bo.Participant;
+import fr.eni.film.tpfilmographie.repositories.MovieRepository;
+import fr.eni.film.tpfilmographie.repositories.OpinionRepository;
+import fr.eni.film.tpfilmographie.repositories.ParticipantRepository;
+import fr.eni.film.tpfilmographie.repositories.TypeRepository;
 import fr.eni.film.tpfilmographie.services.ParticipantService;
+import jakarta.persistence.EntityManager;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 @Service("participantsService")
 public class ParticipantServiceImpl implements ParticipantService {
-    private ArrayList<Participant> participants;
-
-    public ParticipantServiceImpl() {
-        this.participants = new ArrayList<Participant>();
-//        participants.add(new Participant(1, "Benjam", "Prejen", true, true));
-//        participants.add(new Participant(2, "Fanch", "Triangle", false, true));
-//        participants.add(new Participant(3, "Sebastien", "Gloopy", false, true));
-//        participants.add(new Participant(4, "Robin", "SonCrusoe", false, true));
-
-    }
+    @Autowired
+    EntityManager em;
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired private OpinionRepository opinionRepository;
+    @Autowired private TypeRepository typeRepository;
+    @Autowired private ParticipantRepository participantRepository;
 
     @Override
     public void insertParticipant(Participant participant) {
-//        participants.add(new Participant(
-//                getNextParticipantId(),
-//                participant.getFirstName(),
-//                participant.getLastName(),
-//                true,
-//                false
-//                )
-//        );
+        participantRepository.save(participant);
     }
 
     @Override
-    public Participant findParticipantById(int id) {
-        for (Participant p : this.participants) {
-            if (p.getId() == id) {
-                return p;
-            }
-        }
-        return null;
+    public Participant findParticipantById(Integer id) {
+        return participantRepository.findById(id).get();
     }
 
     @Override
     public ArrayList<Participant> findParticipants() {
-        return participants;
+        return (ArrayList<Participant>) participantRepository.findAll();
     }
 
     @Override
-    public int getNextParticipantId() {
-        int id = participants.get(participants.size()).getId()+1;
-        return id;
+    public List<Participant> findDirectors() {
+        return em.createNativeQuery("SELECT * FROM participant WHERE dtype = 'director'", Participant.class)
+                .getResultList();
     }
+
+    @Override
+    public List<Participant> findActors() {
+        return em.createNativeQuery("SELECT * FROM participant WHERE dtype = 'actor'", Participant.class)
+                .getResultList();
+    }
+
+
 }

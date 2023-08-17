@@ -1,18 +1,13 @@
 package fr.eni.film.tpfilmographie;
 
-import fr.eni.film.tpfilmographie.bll.MovieServiceImpl;
-import fr.eni.film.tpfilmographie.bll.OpinionServiceImpl;
-import fr.eni.film.tpfilmographie.bll.ParticipantServiceImpl;
-import fr.eni.film.tpfilmographie.bll.TypeServiceImpl;
+import fr.eni.film.tpfilmographie.bll.*;
 import fr.eni.film.tpfilmographie.bo.Type;
-import fr.eni.film.tpfilmographie.services.MovieService;
-import fr.eni.film.tpfilmographie.services.OpinionService;
-import fr.eni.film.tpfilmographie.services.ParticipantService;
-import fr.eni.film.tpfilmographie.services.TypeService;
+import fr.eni.film.tpfilmographie.services.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @Configuration
 public class AppConfig {
@@ -31,7 +26,11 @@ public class AppConfig {
     @Bean public ParticipantService participantService(){
         return new ParticipantServiceImpl();
     }
-    @Bean public ArrayList<Type> types(){
+    @Bean public List<Type> types(){
         return typeService().findTypes();
+    }
+
+    @Bean
+    MemberService memberService(){return new MemberServiceImpl();
     }
 }

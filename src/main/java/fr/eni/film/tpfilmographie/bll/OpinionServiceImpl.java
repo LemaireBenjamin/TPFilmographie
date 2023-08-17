@@ -1,46 +1,38 @@
 package fr.eni.film.tpfilmographie.bll;
 
 import fr.eni.film.tpfilmographie.bo.Opinion;
+import fr.eni.film.tpfilmographie.repositories.MovieRepository;
+import fr.eni.film.tpfilmographie.repositories.OpinionRepository;
+import fr.eni.film.tpfilmographie.repositories.ParticipantRepository;
+import fr.eni.film.tpfilmographie.repositories.TypeRepository;
 import fr.eni.film.tpfilmographie.services.OpinionService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class OpinionServiceImpl implements OpinionService {
+    @Autowired
+    private MovieRepository movieRepository;
+    @Autowired private OpinionRepository opinionRepository;
+    @Autowired private TypeRepository typeRepository;
+    @Autowired private ParticipantRepository participantRepository;
 
-    private ArrayList<Opinion> opinions;
-
-    public OpinionServiceImpl() {
-        this.opinions = new ArrayList<Opinion>();
-        opinions.add(new Opinion(1, "Extra !", 5));
-        opinions.add(new Opinion(2, "Bien.", 4));
-        opinions.add(new Opinion(3, "Moyen.", 3));
-        opinions.add(new Opinion(4, "Mauvais.", 2));
-        opinions.add(new Opinion(5, "Nul !", 1));
-    }
 
     @Override
     public ArrayList<Opinion> findOpinions() {
-        return this.opinions;
+        return (ArrayList<Opinion>) opinionRepository.findAll();
     }
 
     @Override
-    public Opinion findOpinionById(int id) {
-        for (Opinion opinion:opinions
-             ) {
-            if(opinion.getId()==id){
-                return opinion;
-            }
-        }
-        return null;
+    public Opinion findOpinionById(Integer id) {
+        return opinionRepository.findById(id).get();
     }
 
     @Override
     public void insertOpinion(Opinion opinion) {
-        this.opinions.add(opinion);
+        opinionRepository.save(opinion);
     }
 
-    @Override
-    public int getNextOpinionId() {
-        return this.opinions.toArray().length+1;
-    }
+
 }

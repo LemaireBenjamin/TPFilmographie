@@ -12,6 +12,9 @@ import java.io.Serial;
 import java.io.Serializable;
 
 @Entity @Data @AllArgsConstructor @NoArgsConstructor
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "dtype")
+@DiscriminatorValue("participant")
 public class Participant implements Serializable {
 
     @Serial
@@ -19,7 +22,8 @@ public class Participant implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+
+    private Integer id;
 
     @NotBlank(message="Le nom ne peut pas être vide.")
     @Size(min = 2,max = 255,message = "Le nom doit être de minimum 2 et maximum 255 caractères.")
@@ -28,10 +32,6 @@ public class Participant implements Serializable {
     @NotBlank(message = "Le prénom ne peut pas être vide.")
     @Size(min = 2,max = 255,message = "Le prénom doit être de minimum 2 et maximum 255 caractères.")
     private String lastName;
-
-
-
-
 
 
 }

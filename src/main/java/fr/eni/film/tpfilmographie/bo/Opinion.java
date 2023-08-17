@@ -19,16 +19,17 @@ public class Opinion implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
 
-    private String opinion;
+    private Integer id;
+    private String text;
+    private Integer rating;
 
-    private int rating;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Movie movie;
 
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.ALL)
     private Member member;
 
 }

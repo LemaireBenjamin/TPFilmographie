@@ -42,7 +42,8 @@
                     </div>
                     <!--    MISSING NULL SAFE CONTROL ON OPINIONS        -->
                     <div class="opinion" th:each="opinion: ${movie.opinions}">
-                        <p th:text="${opinion.opinion}"></p>
+                        <h3 th:text="${opinion.member.firstName + ' ' + opinion.member.lastName}"></h3>
+                        <p th:text="${opinion.text}"></p>
                         <p th:text="${opinion.rating}"></p>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Data
@@ -25,7 +26,7 @@ public class Member implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @NotBlank(message="Le prénom ne peut être vide")
     @NotNull(message = "L'email ne peut pas être nul")
@@ -45,6 +46,6 @@ public class Member implements Serializable {
 
     private boolean admin;
 
-    @OneToMany(mappedBy = "opinions")
-    private ArrayList<Opinion> opinions;
+    @OneToMany(mappedBy = "member",cascade = CascadeType.ALL)
+    private List<Opinion> opinions;
 }
